@@ -1,0 +1,6 @@
+BASE_URL = "https://events.webmobi.com"
+LOGIN_API = "https://events.webmobi.com/api/login"
+CREATE_EVENT_API = "https://events.webmobi.com/api/events"
+EVENT_LIST_API = "https://events.webmobi.com/api/events"
+EMAIL = "meghasunke.111@gmail.com"
+PASSWORD = "Megha@123"
