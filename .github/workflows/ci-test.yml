@@ -52,14 +52,14 @@ jobs:
           echo "ENVIRONMENT=${{ github.event.inputs.environment || 'staging' }}" >> .env
           echo "EVENT_NAME=${{ github.event.inputs.event_name }}" >> .env
 
-      # Step 5: Install Chromium
+      # Step 5: Install Chromium (required for Selenium)
       - name: Install Chromium
         run: |
           sudo apt-get update
           sudo apt-get install -y chromium
 
-      # Step 6: Run automation tests
-      - name: Run UI Automation
+      # Step 6: Run UI Automation
+      - name: Run Automation
         run: |
           python main.py
 
