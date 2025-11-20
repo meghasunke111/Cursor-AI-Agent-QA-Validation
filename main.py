@@ -1,11 +1,12 @@
+import os
 import json
-from ui_validate_event import ui_validate_event
+from ui_part import ui_validate_event
 
 def main():
-    # You can make this dynamic, e.g., from workflow input or environment variable
-    event_name = "Hybrid Automation Test Event"
+    # Get event name from environment variable (set in GitHub Actions workflow)
+    event_name = os.getenv("EVENT_NAME", "Hybrid Automation Test Event")
 
-    # Run UI validation
+    # Run UI automation
     ui_validate_event(event_name)
 
     # Generate artifact for CI reporting
@@ -14,7 +15,6 @@ def main():
         "status": "completed"
     }
 
-    # Save artifact
     with open("last_event.json", "w") as f:
         json.dump(artifact_data, f)
 
