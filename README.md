@@ -1,7 +1,7 @@
-WebMobi Hybrid Automation (Mock API + UI)
-Goal
+#WebMobi Hybrid Automation (Mock API + UI)
+#Goal
 
-Automate authentication (mock API), create an event in the real WebMobi UI (Selenium), and verify it appears in the events list. Provide assertions, evidence, and a minimal GitHub Action CI.
+Automate authentication (mock API), create an event in the real WebMobi UI (Selenium), and verify it appears in the events list. Provide assertions, evidence, and minimal GitHub Actions CI.
 
 Quick File Map
 
@@ -23,32 +23,19 @@ Prerequisites
 
 Python 3.10+
 
-Chrome installed (for local runs)
+Chrome installed (local runs)
 
 Git and GitHub account for CI
 
 Setup (Local)
 
-Open project folder.
+Open project folder and create/activate venv:
 
-Create virtual environment and activate:
+Windows: python -m venv venv → venv\Scripts\activate
 
-Windows:
+macOS/Linux: python -m venv venv → source venv/bin/activate
 
-python -m venv venv
-venv\Scripts\activate
-
-
-macOS/Linux:
-
-python -m venv venv
-source venv/bin/activate
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
+Install dependencies: pip install -r requirements.txt
 
 Create .env in project root (do not commit):
 
@@ -67,19 +54,13 @@ artifacts/events_list.png
 
 artifacts/ui_result.log
 
-failure.txt (only if failed)
+failure.txt (if failed)
 
 CI (GitHub Actions)
 
 Push repo to GitHub.
 
-Add repository secrets in Settings → Secrets:
-
-EMAIL
-
-PASSWORD
-
-(optional) BASE_URL, HEADLESS
+Add repository secrets in Settings → Secrets: EMAIL, PASSWORD (optional: BASE_URL, HEADLESS)
 
 Workflow .github/workflows/ci-test.yml runs on push and uploads artifacts.
 
@@ -93,6 +74,16 @@ Event present in events list (assertion raises error if missing)
 
 Notes
 
-Free WebMobi accounts don’t expose full API; this repo uses a Mock API to satisfy the hybrid requirement and uses real UI automation for creation and validation.
+Free WebMobi accounts don’t expose full API; mock API used for hybrid requirement.
 
-Do not commit .env to GitHub. Keep credentials in GitHub Secrets for CI.
+Real UI automation is used for creation and validation.
+
+Do not commit .env to GitHub; use GitHub Secrets for CI.
+
+Required Comments
+
+Python code: comment complex actions, e.g., login, create event, validate UI.
+
+GitHub Actions: comment steps like installing dependencies, setting env vars, uploading artifacts.
+
+Always explain why a step exists, not just what it does, for maintainability.
